@@ -1,12 +1,13 @@
 import type { MetaFunction, LinksFunction, LoaderFunction } from "remix";
 import { useRouteData } from "remix";
+import { cars } from "../cars.server";
 
 import stylesUrl from "../styles/index.css";
 
 export let meta: MetaFunction = () => {
   return {
     title: "Remix Starter",
-    description: "Welcome to remix!"
+    description: "Welcome to remix!",
   };
 };
 
@@ -15,7 +16,7 @@ export let links: LinksFunction = () => {
 };
 
 export let loader: LoaderFunction = async () => {
-  return { message: "this is awesome 😎" };
+  return { cars };
 };
 
 export default function Index() {
@@ -28,7 +29,7 @@ export default function Index() {
         <a href="https://remix.run/dashboard/docs">Check out the docs</a> to get
         started.
       </p>
-      <p>Message from the loader: {data.message}</p>
+      <p>There's {data.cars.length} cars</p>
     </div>
   );
 }
